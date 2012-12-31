@@ -2,20 +2,19 @@
 /**
  * A very small template class, that allows for layouts and partial rendering.
  *
- * @package File
- * @subpackage Template
- * @version $Id$
- * @copyright (c) 2008 Justin "4sak3n 0ne" Jahn
+ * @package TinyMVC
+ * @copyright (c) 2012 Justin "4sak3n 0ne" Jahn
  * @license http://creativecommons.org/licenses/by-nc-sa/3.0/us Attribution-Noncommercial-Share Alike 3.0
  */
 
 /**
- * A very small template class that allows for layouts and partial rendering.
+ * A simple template renderer that supports partial rendering and master layouts.
+ *
  * NOTE: $this->content used within a layout file will render the script.  It is
  * not recommended to modify this variable directly.
  *
- * @package Template
- * @copyright (c) 2008 Justin "4sak3n 0ne" Jahn
+ * @package TinyMVC
+ * @copyright (c) 2012 Justin "4sak3n 0ne" Jahn
  * @license http://creativecommons.org/licenses/by-nc-sa/3.0/us Attribution-Noncommercial-Share Alike 3.0
  */
 class TinyTemplate

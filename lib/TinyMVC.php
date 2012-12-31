@@ -3,7 +3,7 @@
  * A minimalistic approach to MVC.
  *
  * @package TinyMVC
- * @copyright (c) 2008 Justin "4sak3n 0ne" Jahn
+ * @copyright (c) 2012 Justin "4sak3n 0ne" Jahn
  * @license http://creativecommons.org/licenses/by-nc-sa/3.0/us Attribution-Noncommercial-Share Alike 3.0
  */
 
@@ -35,7 +35,7 @@
  *  # Actions that return false do not have views automatically rendered.
  *
  * @package TinyMVC
- * @copyright (c) 2008 Justin "4sak3n 0ne" Jahn
+ * @copyright (c) 2012 Justin "4sak3n 0ne" Jahn
  * @license http://creativecommons.org/licenses/by-nc-sa/3.0/us Attribution-Noncommercial-Share Alike 3.0
  */
 class TinyMVC
@@ -43,28 +43,28 @@ class TinyMVC
     /**
      * The singleton instance of this class.
      *
-     * @param TinyMVC
+     * @var TinyMVC
      */
     protected static $_instance;
 
     /**
      * The location of the Controller files.
      *
-     * @var String
+     * @var string
      */
     protected $_controllerPath;
 
     /**
      * The current Controller.
      *
-     * @var String
+     * @var string
      */
     protected $_controller;
 
     /**
      * The current Action.
      *
-     * @var String
+     * @var string
      */
     protected $_action;
 
@@ -77,11 +77,15 @@ class TinyMVC
 
     /**
      * Prevent copying the class as it is a singleton.
+     *
+     * @return void
      */
     protected function __clone() {}
 
     /**
      * Prevent creating new instances of this object.
+     *
+     * @return void
      */
     protected function __construct()
     {
@@ -95,8 +99,8 @@ class TinyMVC
      * Remove all special characters and convert spaces to dashes to form a valid
      * method name.
      *
-     * @param String $sQuery The query string to parse.
-     * @return String Fully parsed string.
+     * @param string $sQuery The query string to parse.
+     * @return string Fully parsed string.
      */
     protected function _filter($sQuery)
     {
@@ -151,8 +155,7 @@ class TinyMVC
     /**
      * Set the Controller class name and file path.
      *
-     * @throws InvalidArgumentException
-     * @param String $sPath The full path to the controller.
+     * @param string $sPath The full path to the controller.
      * @return TinyMVC Allows method chaining.
      */
     public function setControllerPath($sPath)
@@ -164,7 +167,7 @@ class TinyMVC
     /**
      * Fetch the full path to the controller file.
      *
-     * @return String
+     * @return string
      */
     public function getControllerPath()
     {
@@ -175,8 +178,9 @@ class TinyMVC
      * Call controller and action specified.
      *
      * @throws Exception
-     * @param String $controller The name of the controller minus the suffix 'Controller'.
-     * @param String $action     The name of the action minus the suffic 'Action'.
+     * @param string $controller The name of the controller minus the suffix 'Controller'.
+     * @param string $action     The name of the action minus the suffic 'Action'.
+     * @return void
      */
     public function call($controller, $action)
     {
@@ -240,6 +244,7 @@ class TinyMVC
      * Process the current request.
      *
      * @throws Exception
+     * @return void
      */
     public function run()
     {

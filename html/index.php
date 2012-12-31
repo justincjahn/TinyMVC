@@ -3,8 +3,7 @@
  * The bootstrap file for the TinyMVC framework.
  *
  * @package TinyMVC
- * @subpackage Controller
- * @copyright (c) 2008 Justin "4sak3n 0ne" Jahn
+ * @copyright (c) 2012 Justin "4sak3n 0ne" Jahn
  * @license http://creativecommons.org/licenses/by-nc-sa/3.0/us Attribution-Noncommercial-Share Alike 3.0
  */
 
@@ -92,7 +91,7 @@
                 ->setTemplateObject($oTemplate)
                 ->run();
         } catch (Exception $e) {
-            if (in_array(strtolower(ini_get('display_errors')), array('on', '1'))) {
+            if (in_array(strtolower(ini_get('display_errors')), array('on', '1', 'true'))) {
                 throw $e;
             } else {
                 header('HTTP/1.0 404 NOT FOUND');
