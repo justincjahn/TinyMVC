@@ -31,21 +31,28 @@ class TinyTemplate
      *
      * @var string
      */
-    protected $_layouts = "views/layouts";
+    protected $_layouts = 'views/layouts';
 
     /**
      * The directory location of the scripts.  This can be set via setScript and getScript.
      *
      * @var string
      */
-    protected $_scripts = "views/scripts";
+    protected $_scripts = 'views/scripts';
+    
+    /**
+     * The base url of the web site.  This can be set via setBaseUrl and getBaseUrl.
+     *
+     * @var string
+     */
+    protected $_baseUrl = '';
 
     /**
      * The layout file to use when rendering.
      *
      * @var string
      */
-    protected $_template = null;
+    protected $_template;
 
     /**
      * Set the class up, and prepare for the impending render.
@@ -223,6 +230,32 @@ class TinyTemplate
 
         // Allow method chaining
         return $this;
+    }
+
+    /**
+     * Sets the base URL of this web site.
+     *
+     * @param string $strBaseUrl The base url of the web site.
+     * @return TinyTemplate 
+     */
+    public function setBaseUrl($strBaseUrl)
+    {
+        $this->_normalizeSlashes($strBaseUrl);
+        $this->_baseUrl = $strBaseUrl;
+    }
+    
+    /**
+     * Gets the base URL of this web site and optionally append a path.
+     *
+     * @param string $url The url to be appended.
+     * @return string
+     */
+    public function getBaseUrl($url = '')
+    {
+        $this->_normalizeSlashes($url);
+        $url = $this->_baseUrl . $url;
+
+        return $url;
     }
 
     /**

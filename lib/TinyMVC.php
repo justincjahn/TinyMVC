@@ -175,6 +175,26 @@ class TinyMVC
     }
 
     /**
+     * Get the short name of the current controller.
+     *
+     * @return string
+     */
+    public function getControllerName()
+    {
+        return $this->_controller;
+    }
+    
+    /**
+     * Get the short name of the current action.
+     *
+     * @return string
+     */
+    public function getActionName()
+    {
+        return $this->_action;
+    }
+
+    /**
      * Call controller and action specified.
      *
      * @throws Exception
