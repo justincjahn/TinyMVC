@@ -253,11 +253,13 @@ class TinyMVC
         }
 
         // If the result was not false, then we will automatically render.
-        $sPath = sprintf('%s/%s.phtml',
-                         strtolower($controller),
-                         strtolower($action));
+        if ($bResult !== false) {
+            $sPath = sprintf('%s/%s.phtml',
+                             strtolower($controller),
+                             strtolower($action));
 
-        $this->_template->render($sPath);
+            $this->_template->render($sPath);
+        }
     }
 
     /**
