@@ -22,6 +22,13 @@
             BASE_PATH . '/lib',
             BASE_PATH . '/app/models'
         )));
+    
+    //
+    // SESSION
+    //
+        if (!isset($_SESSION)) {
+            session_start();
+        }
 
     //
     // Autoloader
