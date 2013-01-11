@@ -280,8 +280,25 @@ class TinyMVC
             throw new Exception('A template object was not provided.');
         }
 
-        // Remove the query string from the URI
-        $sRequest = str_replace($_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
+        // We support two different types of request handling.  GET variables,
+        /// and reading the REQUEST_URI directly.  This block normalizes the
+        /// to, and provides the rest of the code the MVC request logic only.
+        if (!isset($_GET['q'])) {
+            // Remove the query string from the URI
+            $iPosition = strpos($_SERVER['REQUEST_URI'], '?');
+
+            // If we found a ?, then this begins the query string and we should
+            /// exclude it from the request string.
+            if ($iPosition !== false) {
+                $sRequest = urldecode(substr($_SERVER['REQUEST_URI'], 0, $iPosition));
+            } else {
+                // We did not find a query string.
+                $sRequest = urldecode($_SERVER['REQUEST_URI']);
+            }
+        } else {
+            // The GET method makes things easier, but isn't as clean.
+            $sRequest = urldecode($_GET['q']);
+        }
 
         // Parse the query string.  The first slash will produce an empty
         /// first array element every time.
