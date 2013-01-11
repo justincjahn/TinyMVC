@@ -280,9 +280,12 @@ class TinyMVC
             throw new Exception('A template object was not provided.');
         }
 
+        // Remove the query string from the URI
+        $sRequest = str_replace($_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
+
         // Parse the query string.  The first slash will produce an empty
         /// first array element every time.
-        $aQuery = explode('/', $_SERVER['REQUEST_URI']);
+        $aQuery = explode('/', $sRequest);
         array_shift($aQuery);
 
         // If we only have one element in our array, it will act as an action.

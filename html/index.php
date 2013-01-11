@@ -28,6 +28,32 @@
     //
         if (!isset($_SESSION)) {
             session_start();
+            
+            // Create a token to help prevent against session hijacking.
+            $sToken = md5($_SERVER['HTTP_USER_AGENT']);
+            if (!isset($_SESSION['token'])) {
+                $_SESSION['token'] = $sToken;
+            } else {
+                // Make sure that our received user agent string hasn't changed
+                if ($_SESSION['token'] != $sToken) {
+                    // It has, destroy the session.
+                    if (ini_get("session.use_cookies")) {
+                        $aCookie = session_get_cookie_params();
+                        
+                        setcookie(
+                            session_name(),
+                            '',
+                            time() - 4200,
+                            $aCookie['path'],
+                            $aCookie['domain'],
+                            $aCookie['secure'],
+                            $aCookie['httponly']
+                        );
+                    }
+                    
+                    session_destroy();
+                }
+            }
         }
 
     //

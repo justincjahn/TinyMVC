@@ -254,6 +254,9 @@ class TinyTemplate
     {
         $this->_normalizeSlashes($url);
         $url = $this->_baseUrl . $url;
+        
+        // If the url is empty, then give it a slash
+        if ($url == '') $url = '/';
 
         return $url;
     }
